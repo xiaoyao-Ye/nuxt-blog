@@ -16,7 +16,7 @@
       </div>
       <div class="mask"></div>
       <div class="bg">
-        <!-- <img src="~assets/img/19.jpg" alt /> -->
+        <img src="~assets/img/19.jpg" alt />
       </div>
     </div>
     <!-- articleList -->
@@ -109,8 +109,8 @@ export default {
       width: 100%;
       height: 100%;
       z-index: -98;
-      background: url("~assets/img/19.jpg") no-repeat center;
-      background-size: 100%;
+      // background: url("~assets/img/19.jpg") no-repeat center;
+      // background-size: 100%;
       box-shadow: 0 2px 15px rgba(76, 80, 207, 0.53);
       img {
         width: 100%;
@@ -162,8 +162,16 @@ export default {
       display: flex;
       align-items: center;
       padding-bottom: 80px;
+      &:nth-child(odd) {
+        .content {
+          margin-left: -20px;
+        }
+      }
       &:nth-child(even) {
         flex-direction: row-reverse;
+        .content {
+          margin-right: -20px;
+        }
       }
       .pic {
         cursor: @cursor-pointer;
@@ -172,6 +180,7 @@ export default {
         height: 440px;
         border-radius: @border-radius-base;
         box-shadow: @box-shadow-base;
+        z-index: 0;
         img {
           width: 100%;
           height: 100%;
