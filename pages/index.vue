@@ -2,36 +2,43 @@
   <div id="layout">
     <div class="bg">
       <div class="warp">
+        <!-- 按钮 -->
         <div class="btn">
+          <!-- 边框 -->
           <div class="sides">
             <div class="top"></div>
             <div class="left"></div>
             <div class="right"></div>
             <div class="bottom"></div>
           </div>
-          <!-- <div class="text">
-            <div class="right">YEYAOYAO</div>
-            <div class="left">YEYAOYAO</div>
-          </div>-->
-          <!-- 边框的动画为: 边框进入-停留其余三个边框画出的时间+满边框后静止时间->边框移出+停留其余三个边框移出的时间+无边框后静止时间->重复 -->
-          <!-- 文字动画应为: 按钮无边框后静止时间时,文字开始动画进入(center点往两边扩散)-文字停留-边框开始动画-边框移出时文字移出动画 -->
-          <!-- 斜杠动画为: 文字开始动画从中心点往两边扩散时同时动画收缩属性0->1然后迅速->0 -->
+          <!-- 斜杠 -->
+          <div class="slash"></div>
+          <!-- 文字 -->
+          <div class="text">
+            <div class="left">
+              <div class="inner">IYEYAOYAO</div>
+            </div>
+            <div class="right">
+              <div class="inner">IYEYAOYAO</div>
+            </div>
+          </div>
         </div>
+        <!-- loading... -->
+        <div class="loading"><i></i><i></i><i></i><i></i></div>
       </div>
     </div>
-
   </div>
 </template>
 <script>
 export default {
   data() {
-    return {
-    };
+    return {};
   },
 };
 </script>
 
 <style lang="less" scoped>
+// 背景动画
 @keyframes change {
   0% {
     background-position-x: 0%;
@@ -43,16 +50,16 @@ export default {
     background-position-x: 0%;
   }
 }
-
+// 按钮边框
 @keyframes side-top {
   0% {
     transform: translateX(-100%);
   }
-  8%,
+  5%,
   50% {
     transform: translateX(0%);
   }
-  58%,
+  55%,
   100% {
     transform: translateX(100%);
   }
@@ -61,11 +68,11 @@ export default {
   0% {
     transform: translateX(100%);
   }
-  8%,
+  5%,
   50% {
     transform: translateX(0%);
   }
-  58%,
+  55%,
   100% {
     transform: translateX(-100%);
   }
@@ -74,11 +81,11 @@ export default {
   0% {
     transform: translateY(100%);
   }
-  8%,
+  5%,
   50% {
     transform: translateY(0%);
   }
-  58%,
+  55%,
   100% {
     transform: translateY(-100%);
   }
@@ -87,15 +94,44 @@ export default {
   0% {
     transform: translateY(-100%);
   }
-  8%,
+  5%,
   50% {
     transform: translateY(0%);
   }
-  58%,
+  55%,
   100% {
     transform: translateY(100%);
   }
 }
+// 文字动画左
+@keyframes txt-left {
+  0% {
+    transform: translateX(100%);
+  }
+  16%,
+  60% {
+    transform: translateX(0%);
+  }
+  76%,
+  100% {
+    transform: translateX(-200%);
+  }
+}
+// 文字动画右
+@keyframes txt-right {
+  0% {
+    transform: translateX(-187%);
+  }
+  16%,
+  60% {
+    transform: translateX(-87%);
+  }
+  76%,
+  100% {
+    transform: translateX(-287%);
+  }
+}
+
 #layout {
   // transition: all 0.5s;
   height: 100vh;
@@ -120,12 +156,13 @@ export default {
       transform: translate(-50%, -50%);
       // 按钮最外层盒子overflow: hidden;
       .btn {
-        overflow: hidden;
+        position: relative;
         margin: 0 auto;
-        width: 200px;
-        height: 60px;
+        width: 260px;
+        height: 70px;
         // 按钮盒子
         .sides {
+          overflow: hidden;
           position: relative;
           width: 100%;
           height: 100%;
@@ -137,37 +174,163 @@ export default {
           .top,
           .bottom {
             width: 100%;
-            height: 2px;
+            height: 3px;
             left: 0;
           }
           .left,
           .right {
-            width: 2px;
+            width: 3px;
             height: 100%;
             top: 0;
           }
           .top {
             transform: translateX(-100%);
-            animation: side-top 6s infinite;
+            animation: side-top 9s 1s infinite;
           }
           .right {
             transform: translateY(-100%);
             right: 0;
-            animation: side-right 6s 0.5s infinite;
+            animation: side-right 9s 1.4s infinite;
           }
           .bottom {
             transform: translateX(100%);
             bottom: 0;
-            animation: side-bottom 6s 1s infinite;
+            animation: side-bottom 9s 1.8s infinite;
           }
           .left {
             transform: translateY(100%);
-            animation: side-left 6s 1.5s infinite;
+            animation: side-left 9s 2.2s infinite;
+          }
+        }
+        // 斜杠-动画
+        @keyframes slash {
+          0% {
+            transform: translate(-50%, -50%) rotate(15deg) scaleY(0);
+          }
+          4%,
+          12% {
+            transform: translate(-50%, -50%) rotate(15deg) scaleY(1);
+          }
+          16%,
+          100% {
+            transform: translate(-50%, -50%) rotate(15deg) scale(0);
+          }
+        }
+        // 斜杠
+        .slash {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          z-index: 1;
+          width: 12px;
+          height: 200%;
+          background-color: #000;
+          transform: translate(-50%, -50%) rotate(15deg) scale(0);
+          animation: slash 9s infinite;
+          &::after {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            content: "";
+            width: 3px;
+            height: 80%;
+            background-color: #fff;
+          }
+        }
+        // 文字
+        .text {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          font-size: 46px;
+          color: #fff;
+          > div {
+            overflow: hidden;
+            width: 50%;
+            position: absolute;
+            top: 0;
+          }
+          .left {
+            left: 0;
+            text-align: right;
+            .inner {
+              padding-left: 17px;
+              transform: translateX(100%);
+              animation: txt-left 9s infinite;
+            }
+          }
+          .right {
+            right: 0;
+            text-align: left;
+            .inner {
+              transform: translateX(-187%);
+              animation: txt-right 9s infinite;
+            }
+          }
+        }
+      }
+      .loading {
+        width: 140px;
+        display: flex;
+        margin: 35px auto;
+        @keyframes loading {
+          0% {
+            opacity: 0.8;
+            transform: scale(.4);
+          }
+          100% {
+            opacity: 0;
+            transform: scale(1);
+          }
+        }
+        i {
+          position: relative;
+          margin: 10px;
+          width: 15px;
+          height: 15px;
+          border-radius: 50%;
+          &::after {
+            content: "";
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            transform: scale(0.4);
+            opacity: 0.8;
+            animation: loading 2s infinite;
+          }
+          &:first-child {
+            background-color: skyblue;
+            &::after {
+              background-color: skyblue;
+            }
+          }
+          &:nth-child(2) {
+            background-color: pink;
+            &::after {
+              background-color: pink;
+            }
+          }
+          &:nth-child(3) {
+            background-color: violet;
+            &::after {
+              background-color: violet;
+            }
+          }
+          &:last-child {
+            background-color: yellowgreen;
+            &::after {
+              background-color: yellowgreen;
+            }
           }
         }
       }
     }
   }
-
 }
 </style>
