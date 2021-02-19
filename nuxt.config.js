@@ -3,14 +3,15 @@ const path = require('path')
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'nuxt-blog',
+    title: '( ‘-ωก̀ )~叶妖妖',
     htmlAttrs: {
       lang: 'en'
     },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' }
+      { hid: 'keywords', name: 'keywords', content: '叶妖妖,叶妖妖的个人博客,叶妖妖blog,妖妖,yeyaoyao.icu' },
+      { hid: 'description', name: 'description', content: '叶妖妖的个人博客demo,为了学习和了解nuxt,koa2,mysql,typescript,Linux,Nginx,服务器,域名等相关知识而创建的一套项目' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }

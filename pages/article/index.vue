@@ -1,49 +1,28 @@
 <template>
-  <div id="article">
-    <!-- home-bg -->
-    <div class="first-screen">
-      <div class="header">
-        <div class="left">logo~</div>
-        <div class="right">
-          <a-button type="link" ghost icon="bars"></a-button>
-        </div>
-      </div>
-      <div class="welcome-tips">
-        <div class="date">二月 5, 2021</div>
-        <div class="title">welcome~~</div>
-        <!-- <div class="desc">不要让世界的悲哀成为你的悲哀.</div> -->
-        <div class="desc">我原本以为, 当灾难来临时,精神意志是人类的第一序列武器.后来明白,当灾难来临时,希望,才是人类的第一序列武器</div>
-      </div>
-      <div class="mask"></div>
-      <div class="bg">
-        <img src="~assets/img/19.jpg" alt />
-      </div>
-    </div>
-    <!-- articleList -->
-    <div class="warp">
-      <div class="articleList">
-        <div class="item" v-for="(item, index) in articleList" :key="item.id">
-          <div class="pic">
-            <img :src="item.pic" alt />
-          </div>
-          <div class="content">
-            <div class="date">{{item.date}}</div>
-            <h2 class="title">{{item.title}}</h2>
-            <div class="description">{{item.description}}</div>
-            <div class="handle">
-              <a-button type="link" icon="eye">{{item.eye}}</a-button>
-              <a-button type="link" @click="onClickHeart(index)">
-                <a-icon type="heart" v-show="!clickHeart" theme="twoTone" two-tone-color="hotpink" />
-                <a-icon type="heart" v-show="clickHeart" theme="filled" />
-                {{item.heart}}
-              </a-button>
-              <a-button type="link" icon="message">{{item.comment}}</a-button>
+  <div class="article">
+    <Header />
+    <div class="content">
+      <a-timeline>
+        <a-timeline-item v-for="item in articleList" :key="item.date">
+          <div class="date">Feb, 2020</div>
+          <div class="item" v-for="son in item.data" :key="son.id">
+            <div class="left">
+              <div class="img">
+                <img :src="son.img" alt />
+              </div>
+              <div>
+                <div class="title">{{son.title}}</div>
+                <div class="desc">{{son.desc}}</div>
+              </div>
+            </div>
+            <div class="right">
+              <span>{{son.date}}</span>
             </div>
           </div>
-        </div>
-      </div>
+        </a-timeline-item>
+        <a-timeline-item></a-timeline-item>
+      </a-timeline>
     </div>
-
   </div>
 </template>
 
@@ -51,173 +30,80 @@
 export default {
   data() {
     return {
-      clickHeart: false,
-
       articleList: [
         {
-          id: 1, date: '2021-02-04', title: '企业级中后台产品的交互语言和视觉风格。', eye: 101, heart: 8, comment: 1, pic: require('@/assets/img/shan.jpg'),
-          description: `众所周知，Ant Design 作为一门设计语言面世，经历过多年的迭代和积累，
-          它对 UI 的设计思想已经成为一套事实标准，受到众多前端开发者及企业的追捧和喜爱，
-          也是 React 开发者手中的神兵利器。希望 ant-design-vue 能够让 Vue 开发者也享受到 Ant Design 的优秀设计。
-          ant-design-vue 是 Ant Design 的 Vue 实现，组件的风格与 Ant Design 保持同步，组件的 html 结构和 css 样式也保持一致，
-          真正做到了样式 0 修改，组件 API 也尽量保持了一致。Ant Design Vue 致力于提供给程序员愉悦的开发体验。`
+          date: 'Start, 2020',
+          data: [
+            { id: 1, img: require('@/assets/img/01.jpg'), title: 'title', desc: 'desc', date: '2ed' },
+            { id: 2, img: require('@/assets/img/01.jpg'), title: 'title', desc: 'desc', date: '6th' }
+          ]
         },
         {
-          id: 2, date: '2021-02-04', title: '企业级中后台产品的交互语言和视觉风格。', eye: 101, heart: 8, comment: 1, pic: require('@/assets/img/shan.jpg'),
-          description: `众所周知，Ant Design 作为一门设计语言面世，经历过多年的迭代和积累，
-          它对 UI 的设计思想已经成为一套事实标准，受到众多前端开发者及企业的追捧和喜爱，
-          也是 React 开发者手中的神兵利器。希望 ant-design-vue 能够让 Vue 开发者也享受到 Ant Design 的优秀设计。
-          ant-design-vue 是 Ant Design 的 Vue 实现，组件的风格与 Ant Design 保持同步，组件的 html 结构和 css 样式也保持一致，
-          真正做到了样式 0 修改，组件 API 也尽量保持了一致。Ant Design Vue 致力于提供给程序员愉悦的开发体验。`
-        },
+          date: 'Feb, 2020',
+          data: [
+            { id: 3, img: require('@/assets/img/01.jpg'), title: 'title', desc: 'desc', date: '2ed' },
+            { id: 4, img: require('@/assets/img/01.jpg'), title: 'title', desc: 'desc', date: '6th' },
+            { id: 5, img: require('@/assets/img/01.jpg'), title: 'title', desc: 'desc', date: '6th' },
+            { id: 6, img: require('@/assets/img/01.jpg'), title: 'title', desc: 'desc', date: '6th' },
+          ]
+        }
       ]
     }
   },
-  methods: {
-    onClickHeart(index) {
-      if (this.clickHeart) {
-        this.articleList[index].heart--
-      } else {
-        this.articleList[index].heart++
-      }
-      this.clickHeart = !this.clickHeart;
-    }
-  },
+  components: {
+    Header: () => import('@/components/Header')
+  }
 }
 </script>
 
 <style lang="less" scoped>
-#article {
-  .first-screen {
-    position: relative;
-    height: 100vh;
-    .header {
-      position: absolute;
-      top: 60px;
-      width: 100%;
-      padding: 0 40px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 36px;
-    }
-    .bg {
-      overflow: hidden;
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -98;
-      // background: url("~assets/img/19.jpg") no-repeat center;
-      // background-size: 100%;
-      box-shadow: 0 2px 15px rgba(76, 80, 207, 0.53);
-      img {
-        width: 100%;
-        // height: 100%;
+.article {
+  padding-top: 50px;
+  .content {
+    margin: 40px auto;
+    width: 600px;
+
+    /deep/.ant-timeline-item-content {
+      margin-left: 32px;
+      .date {
+        margin: 0 0 10px;
+        font-size: 18px;
       }
-    }
-    .mask {
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: 0;
-      width: 100%;
-      height: 100%;
-      clip-path: polygon(0 0, 25% 0, 60% 100%, 0 100%);
-      background-color: rgba(76, 80, 207, 0.53);
-    }
-    .welcome-tips {
-      position: absolute;
-      top: 45%;
-      left: 8%;
-      z-index: 1;
-      width: 30%;
-      transform: translateY(-50%);
-      color: #fff;
-      .title {
-        padding-bottom: 20px;
-        font-size: 36px;
-      }
-      .desc {
-        font-size: 16px;
-      }
-    }
-  }
-  //
-  .articleList {
-    position: relative;
-    padding: 80px 0;
-    &::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 50%;
-      width: 1px;
-      height: 100%;
-      z-index: -99;
-      background-color: @border-color-base;
-    }
-    .item {
-      display: flex;
-      align-items: center;
-      padding-bottom: 80px;
-      &:nth-child(odd) {
-        .content {
-          margin-left: -20px;
+      .item {
+        display: flex;
+        justify-content: space-between;
+        padding: 25px 0;
+        .left {
+          display: flex;
+          .img {
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            width: 45px;
+            min-width: 45px;
+            height: 45px;
+            margin-right: 10px;
+            border-radius: @border-radius-base;
+            img {
+              height: 100%;
+            }
+          }
+          .title {
+            font-size: 16px;
+            color: @heading-color;
+          }
         }
-      }
-      &:nth-child(even) {
-        flex-direction: row-reverse;
-        .content {
-          margin-right: -20px;
-        }
-      }
-      .pic {
-        cursor: @cursor-pointer;
-        overflow: hidden;
-        width: 680px;
-        height: 440px;
-        border-radius: @border-radius-base;
-        box-shadow: @box-shadow-base;
-        z-index: 0;
-        img {
-          width: 100%;
-          height: 100%;
-        }
-      }
-      .content {
-        padding: 80px 100px;
-        width: 500px;
-        height: 400px;
-        border: 1px solid @border-color-base;
-        border-radius: @border-radius-base;
-        .date {
-          font-size: 12px;
-        }
-        .title {
-          cursor: @cursor-pointer;
-          padding: 8px 0 0;
-          font-size: 24px;
-          line-height: 30px;
-          display: -webkit-box;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          -webkit-line-clamp: 2;
-          -webkit-box-orient: vertical;
-        }
-        .description {
-          display: -webkit-box;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          -webkit-line-clamp: 3;
-          -webkit-box-orient: vertical;
-        }
-        .handle {
-          padding-top: 60px;
-          .ant-btn {
-            padding-left: 0;
-            color: @text-color;
+        .right {
+          min-width: 40px;
+          text-align: right;
+          span {
+            // 还需要导入字体样式
+            font-family: eafont, Hiragino Sans GB, Hiragino Sans GB W3,
+              Microsoft YaHei, WenQuanYi Micro Hei, sans-serif;
+            color: #d2c6a3;
+            // flex-grow: 1; //这三个元素只有它在有空余空间时可伸缩，也就是它占据了所有剩余空间
+            // display: flex; //将它设置为flex,就可以单独对他进行主轴右对齐
+            // justify-content: flex-end;
           }
         }
       }

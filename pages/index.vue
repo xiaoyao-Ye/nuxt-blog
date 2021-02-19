@@ -24,7 +24,23 @@
           </div>
         </div>
         <!-- loading... -->
-        <div class="loading"><i></i><i></i><i></i><i></i></div>
+        <div class="loading">
+          <i></i>
+          <i></i>
+          <i></i>
+          <i></i>
+        </div>
+
+        <!-- menu -->
+        <div class="menu">
+          <a-button
+            type="link"
+            v-for="item in menuList"
+            :key="item.to"
+            :icon="item.icon"
+            @click="$router.push(item.to)"
+          >{{item.label}}</a-button>
+        </div>
       </div>
     </div>
   </div>
@@ -32,7 +48,16 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      menuList: [
+        { to: '/home', label: '主页', icon: 'home' },
+        { to: '/article', label: '文章', icon: 'read' },
+        { to: '/about', label: '关于', icon: 'info-circle' },
+        { to: '/message', label: '留言', icon: 'message' },
+        { to: '/github', label: 'github', icon: 'github' },
+        { to: '/wechat', label: '微信', icon: 'wechat' },
+      ]
+    };
   },
 };
 </script>
@@ -131,7 +156,17 @@ export default {
     transform: translateX(-287%);
   }
 }
-
+// 加载中动画
+@keyframes loading {
+  0% {
+    opacity: 0.8;
+    transform: scale(0.4);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+}
 #layout {
   // transition: all 0.5s;
   height: 100vh;
@@ -276,16 +311,6 @@ export default {
         width: 140px;
         display: flex;
         margin: 35px auto;
-        @keyframes loading {
-          0% {
-            opacity: 0.8;
-            transform: scale(.4);
-          }
-          100% {
-            opacity: 0;
-            transform: scale(1);
-          }
-        }
         i {
           position: relative;
           margin: 10px;
@@ -327,6 +352,22 @@ export default {
             &::after {
               background-color: yellowgreen;
             }
+          }
+        }
+      }
+      // menu
+      .menu {
+        text-align: center;
+        .ant-btn-link {
+          transition: all 0.6s ease;
+          font-size: 16px;
+          padding: 0 10px;
+          color: #fff;
+          &:hover {
+            color: yellow;
+          }
+          span {
+            margin-left: 4px;
           }
         }
       }

@@ -2,12 +2,17 @@
   <div>
     <Nuxt />
 
-    <!-- up-top -->
-    <a-back-top>
-      <div class="ant-back-top-inner">UP</div>
-    </a-back-top>
+    <Totop />
   </div>
 </template>
+
+<script>
+export default {
+  components: {
+    Totop: () => import('@/components/Totop')
+  }
+}
+</script>
 
 <style lang="less">
 html {
@@ -56,20 +61,5 @@ html {
 .button--grey:hover {
   color: #fff;
   background-color: #35495e;
-}
-
-// up-top
-.ant-back-top-inner {
-  cursor: @cursor-pointer;
-  transition: all 0.5s ease;
-  height: 100%;
-  line-height: 36px;
-  text-align: center;
-  border: 2px dotted @border-color-base;
-  border-radius: 20px;
-  box-shadow: @box-shadow-base;
-  &:hover {
-    box-shadow: 0 2px 10px rgba(255, 0, 0, 0.5);
-  }
 }
 </style>
