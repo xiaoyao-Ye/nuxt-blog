@@ -1,8 +1,8 @@
 <template>
   <div class="header">
-    <div class="left">妖</div>
+    <div class="left" @click="$router.push('/')">妖</div>
     <div class="center" :style="{opacity: opacity}">~</div>
-    <div class="right">
+    <div class="right" @click="$router.push('/about')">
       <img src="@/assets/img/01.jpg" alt />
     </div>
   </div>
@@ -59,8 +59,14 @@ export default {
   border-bottom: 1px solid #f6f7f8;
   background-color: #fff;
   .left {
-    font-size: 18px;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    font-size: 24px;
     font-family: cursive;
+    color: #000;
+    cursor: @cursor-pointer;
   }
   .center {
     transition: all 0.6s ease;
@@ -68,6 +74,7 @@ export default {
   .right {
     width: 30px;
     height: 30px;
+    cursor: @cursor-pointer;
     img {
       width: 100%;
       height: 100%;

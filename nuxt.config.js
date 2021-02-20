@@ -22,6 +22,7 @@ export default {
   css: [
     'ant-design-vue/dist/antd.css',
     './assets/styles/index.less',
+    './assets/styles/animation.less',
   ],
 
   styleResources: {
@@ -30,7 +31,8 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    '@/plugins/antd-ui'
+    '@/plugins/antd-ui',
+    '@/plugins/route'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

@@ -3,20 +3,21 @@
     <!-- home-bg -->
     <div class="first-screen">
       <div class="header">
-        <div class="left">logo~</div>
+        <div class="left">乂叶妖妖</div>
         <div class="right">
-          <a-button type="link" ghost icon="bars"></a-button>
+          <a-button type="dashed" ghost icon="menu" @click="$router.push('/')"></a-button>
         </div>
       </div>
       <div class="welcome-tips">
         <div class="date">二月 5, 2021</div>
-        <div class="title">welcome~~</div>
-        <!-- <div class="desc">不要让世界的悲哀成为你的悲哀.</div> -->
-        <div class="desc">我原本以为, 当灾难来临时,精神意志是人类的第一序列武器.后来明白,当灾难来临时,希望,才是人类的第一序列武器</div>
+        <div class="title">选凌晨还是黄昏?</div>
+        <div class="desc">当灾难来临时,精神意志是人类的第一序列武器? 当灾难来临时,希望,才是人类的第一序列武器!</div>
       </div>
       <div class="mask"></div>
-      <div class="bg">
-        <img src="~assets/img/19.jpg" alt />
+      <div class="bg" id="scene">
+        <div data-depth="0.4">
+          <img src="~assets/img/19.jpg" class="moveImg" :width="imgWidth" :height="imgHeight" />
+        </div>
       </div>
     </div>
     <!-- articleList -->
@@ -43,14 +44,17 @@
         </div>
       </div>
     </div>
-
   </div>
 </template>
 
 <script>
+import Parallax from 'parallax-js'
+
 export default {
   data() {
     return {
+      imgWidth: null,
+      imgHeight: null,
       clickHeart: false,
 
       articleList: [
@@ -72,6 +76,22 @@ export default {
         },
       ]
     }
+  },
+  created() {
+
+  },
+  mounted() {
+    let wWidth = document.documentElement.clientWidth
+    let wHeight = document.documentElement.clientHeight
+    this.imgWidth = wWidth + 150
+    this.imgHeight = wHeight + 150
+    if (wWidth <= 600) { this.imgWidth = 1920 / 1.3; this.imgHeight = 960 }
+
+    const scene = document.getElementById('scene');
+    new Parallax(scene, {
+      relativeInput: true,
+      clipRelativeInput: true,
+    })
   },
   methods: {
     onClickHeart(index) {
@@ -101,6 +121,14 @@ export default {
       justify-content: space-between;
       align-items: center;
       font-size: 36px;
+      z-index: 1;
+      .left {
+        font-family: cursive;
+        color: #fff;
+      }
+      .right {
+        line-height: 100%;
+      }
     }
     .bg {
       overflow: hidden;
@@ -110,12 +138,15 @@ export default {
       width: 100%;
       height: 100%;
       z-index: -98;
-      // background: url("~assets/img/19.jpg") no-repeat center;
-      // background-size: 100%;
       box-shadow: 0 2px 15px rgba(76, 80, 207, 0.53);
       img {
-        width: 100%;
-        // height: 100%;
+        position: absolute;
+        top: -40px;
+        left: 50%;
+        margin-bottom: 20px;
+        transform: translateX(-50%);
+        max-width: none;
+        display: block;
       }
     }
     .mask {
@@ -131,10 +162,11 @@ export default {
     .welcome-tips {
       position: absolute;
       top: 45%;
-      left: 8%;
+      left: 10%;
       z-index: 1;
       width: 30%;
       transform: translateY(-50%);
+      font-family: cursive;
       color: #fff;
       .title {
         padding-bottom: 20px;
@@ -217,8 +249,83 @@ export default {
         .handle {
           padding-top: 60px;
           .ant-btn {
+            position: relative;
             padding-left: 0;
             color: @text-color;
+            &::after,
+            &::before {
+              opacity: 0;
+              visibility: visible;
+              transition: all 0.3s;
+            }
+            &:hover {
+              &::after,
+              &::before {
+                opacity: 1;
+                visibility: visible;
+              }
+            }
+            &::before {
+              content: "";
+              display: block;
+              position: absolute;
+              top: auto !important;
+              right: auto !important;
+              left: 50% !important;
+              bottom: 100% !important;
+              transform: translate(-50%, 5px);
+              border: 5px solid transparent;
+              border-top-color: #ef6d57;
+              border-radius: 0;
+              background-color: transparent;
+            }
+            &::after {
+              content: "浏览量";
+              position: absolute;
+              left: 50%;
+              bottom: 100%;
+              transform: translate(-50%, -5px);
+              padding: 5px 14px;
+              font-size: 12px;
+              white-space: nowrap;
+              color: #fff;
+              border-radius: 10px;
+              background: #ef6d57;
+            }
+            &:nth-of-type(2) {
+              &::after {
+                content: "点个赞~";
+              }
+            }
+            &:nth-of-type(3) {
+              &::after {
+                content: "评论量";
+              }
+            }
+            &:nth-of-type(1):hover {
+              color: #ef6d57;
+            }
+            &:nth-of-type(2):hover {
+              color: #50bcb6;
+              i {
+                color: #50bcb6;
+              }
+              &::after {
+                background-color: #50bcb6;
+              }
+              &::before {
+                border-top-color: #50bcb6;
+              }
+            }
+            &:nth-of-type(3):hover {
+              color: #ffa800;
+              &::after {
+                background-color: #ffa800;
+              }
+              &::before {
+                border-top-color: #ffa800;
+              }
+            }
           }
         }
       }

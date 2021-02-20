@@ -3,8 +3,8 @@
     <Header />
     <div class="content">
       <a-timeline>
-        <a-timeline-item v-for="item in articleList" :key="item.date">
-          <div class="date">Feb, 2020</div>
+        <a-timeline-item color="#ff6600" v-for="item in articleList" :key="item.date">
+          <div class="date">{{item.date}}</div>
           <div class="item" v-for="son in item.data" :key="son.id">
             <div class="left">
               <div class="img">
@@ -20,7 +20,7 @@
             </div>
           </div>
         </a-timeline-item>
-        <a-timeline-item></a-timeline-item>
+        <a-timeline-item color="#ff6600"></a-timeline-item>
       </a-timeline>
     </div>
   </div>
@@ -73,6 +73,7 @@ export default {
         display: flex;
         justify-content: space-between;
         padding: 25px 0;
+        border-bottom: 1px solid #eee;
         .left {
           display: flex;
           .img {
