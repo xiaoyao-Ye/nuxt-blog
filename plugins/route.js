@@ -1,16 +1,21 @@
+import NProgress from 'nprogress'
+
+/*全局配置 加载条*/
+NProgress.configure({
+  easing: 'ease-out-in',  // 动画方式
+  speed: 700,  // 递增进度条的速度
+  showSpinner: true, // 是否显示加载ico
+  trickleSpeed: 200, // 自动递增间隔
+  minimum: 0.3 // 初始化时的最小百分比
+})
+
+// nuxt的实例解构出app.app里有router,store等对象
 export default ({ app }) => {
   app.router.beforeEach((to, from, next) => {
-    // ...
-    // 页面刷新有时候没有动画效果,会导致页面还没渲染完成就直接显示,
-    // 路由守卫延迟放行好像可以触发动画,
-    // 或者是跳转前加一个加载中状态,跳转过去之后延迟取消.
-    console.log('11');
-    setTimeout(() => {
-      next()
-    }, 2000);
+    NProgress.start();
+    next()
   })
   app.router.afterEach((to, from) => {
-    // to and from are both route objects.
-    console.log('22');
+    NProgress.done();
   })
 }

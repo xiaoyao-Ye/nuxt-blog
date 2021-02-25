@@ -41,3 +41,21 @@ body {
     width: 1180px;
     margin: 0 auto;
 }
+
+.ant-spin-nested-loading>div>.ant-spin {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    max-height: none;
+    // height: 100vh;
+}
+
+.ant-spin-container {
+    transition: opacity 1s;
+}
+
+.ant-spin-blur::after {
+    opacity: .95;
+}

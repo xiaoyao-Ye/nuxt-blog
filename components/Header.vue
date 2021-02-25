@@ -1,9 +1,9 @@
 <template>
   <div class="header">
     <div class="left" @click="$router.push('/')">妖</div>
-    <div class="center" :style="{opacity: opacity}">~</div>
+    <div class="center" :style="{opacity: opacity}">{{tip}}</div>
     <div class="right" @click="$router.push('/about')">
-      <img src="@/assets/img/01.jpg" alt />
+      <img src="@/assets/img/12.jpg" alt />
     </div>
   </div>
 </template>
@@ -26,6 +26,12 @@ function throttle(func, wait) {
 }
 
 export default {
+  props: {
+    tip: {
+      type: String,
+      default: '要加油哦!~~O(∩_∩)O~'
+    }
+  },
   data() {
     return {
       opacity: 0,
@@ -36,7 +42,7 @@ export default {
   },
   methods: {
     onScroll() {
-      console.log(document.documentElement.scrollTop || document.body.scrollTop)
+      // console.log(document.documentElement.scrollTop || document.body.scrollTop)
       let top = document.documentElement.scrollTop || document.body.scrollTop;
       this.opacity = top > 10 ? 1 : 0;
     }
@@ -63,7 +69,7 @@ export default {
     height: 30px;
     line-height: 30px;
     text-align: center;
-    font-size: 24px;
+    font-size: 30px;
     font-family: cursive;
     color: #000;
     cursor: @cursor-pointer;
@@ -72,11 +78,15 @@ export default {
     transition: all 0.6s ease;
   }
   .right {
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
     width: 30px;
     height: 30px;
+    border-radius: 50%;
     cursor: @cursor-pointer;
     img {
-      width: 100%;
+      // width: 100%;
       height: 100%;
     }
   }

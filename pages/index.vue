@@ -35,10 +35,19 @@
         <div class="menu">
           <a-button
             type="link"
-            v-for="item in menuList"
-            :key="item.to"
+            v-for="(item, index) in menuList"
+            :key="item.to || index"
             :icon="item.icon"
-            @click="$router.push(item.to)"
+            @click="item.to && $router.push(item.to)"
+          >{{item.label}}</a-button>
+        </div>
+        <div class="menu">
+          <a-button
+            type="link"
+            v-for="(item, index) in aboutList"
+            :key="item.to || index"
+            :icon="item.icon"
+            @click="onLink(item)"
           >{{item.label}}</a-button>
         </div>
       </div>
@@ -52,12 +61,23 @@ export default {
       menuList: [
         { to: '/home', label: '主页', icon: 'home' },
         { to: '/article', label: '文章', icon: 'read' },
+        { to: '/dailyTask', label: '每日任务', icon: 'schedule' },
+        { to: '/login', label: '登录', icon: 'login' },
         { to: '/about', label: '关于', icon: 'info-circle' },
         { to: '/message', label: '留言', icon: 'message' },
-        { to: '/github', label: 'github', icon: 'github' },
-        { to: '/wechat', label: '微信', icon: 'wechat' },
+      ],
+      aboutList: [
+        { to: '//github.com/17752877748', label: 'github', icon: 'github' },
+        { to: '//yuque.com/aiyaoyao', label: '语雀', icon: 'yuque' },
+        { label: 'YQCyecong@163.com', icon: 'mail' },
+        { label: 'YQCyecong', icon: 'wechat' },
       ]
     };
+  },
+  methods: {
+    onLink(item) {
+      item.to && window.open(item.to, '_blank')
+    }
   },
 };
 </script>

@@ -1,6 +1,8 @@
 <template>
   <div>
-    <Nuxt />
+    <a-spin :spinning="loading" size="large" tip="loading...">
+      <Nuxt />
+    </a-spin>
 
     <Totop />
   </div>
@@ -8,9 +10,19 @@
 
 <script>
 export default {
+  data() {
+    return {
+      loading: true,
+    }
+  },
   components: {
     Totop: () => import('@/components/Totop')
-  }
+  },
+  mounted() {
+    setTimeout(() => {
+      this.loading = false;
+    }, 500);
+  },
 }
 </script>
 

@@ -9,8 +9,8 @@
         </div>
       </div>
       <div class="welcome-tips">
-        <div class="date">二月 5, 2021</div>
-        <div class="title">选凌晨还是黄昏?</div>
+        <div class="date">二月 21, 2021</div>
+        <div class="title">聚散别离未思量</div>
         <div class="desc">当灾难来临时,精神意志是人类的第一序列武器? 当灾难来临时,希望,才是人类的第一序列武器!</div>
       </div>
       <div class="mask"></div>
@@ -42,6 +42,10 @@
             </div>
           </div>
         </div>
+        <!-- 底线 -->
+        <div class="bottom-line">
+          <a-button type="dashed">你真当我没有底线的吗~╭(╯^╰)╮</a-button>
+        </div>
       </div>
     </div>
   </div>
@@ -59,20 +63,20 @@ export default {
 
       articleList: [
         {
-          id: 1, date: '2021-02-04', title: '企业级中后台产品的交互语言和视觉风格。', eye: 101, heart: 8, comment: 1, pic: require('@/assets/img/shan.jpg'),
-          description: `众所周知，Ant Design 作为一门设计语言面世，经历过多年的迭代和积累，
-          它对 UI 的设计思想已经成为一套事实标准，受到众多前端开发者及企业的追捧和喜爱，
-          也是 React 开发者手中的神兵利器。希望 ant-design-vue 能够让 Vue 开发者也享受到 Ant Design 的优秀设计。
-          ant-design-vue 是 Ant Design 的 Vue 实现，组件的风格与 Ant Design 保持同步，组件的 html 结构和 css 样式也保持一致，
-          真正做到了样式 0 修改，组件 API 也尽量保持了一致。Ant Design Vue 致力于提供给程序员愉悦的开发体验。`
+          id: 1, date: '2021-02-04', title: '天未寒,夜明歌尽非攻踏山河', eye: 101, heart: 8, comment: 1, pic: require('@/assets/img/shan.jpg'),
+          description: `天未寒,夜明歌尽非攻踏山河.自秦时明月    --荆天明`
         },
         {
-          id: 2, date: '2021-02-04', title: '企业级中后台产品的交互语言和视觉风格。', eye: 101, heart: 8, comment: 1, pic: require('@/assets/img/shan.jpg'),
-          description: `众所周知，Ant Design 作为一门设计语言面世，经历过多年的迭代和积累，
-          它对 UI 的设计思想已经成为一套事实标准，受到众多前端开发者及企业的追捧和喜爱，
-          也是 React 开发者手中的神兵利器。希望 ant-design-vue 能够让 Vue 开发者也享受到 Ant Design 的优秀设计。
-          ant-design-vue 是 Ant Design 的 Vue 实现，组件的风格与 Ant Design 保持同步，组件的 html 结构和 css 样式也保持一致，
-          真正做到了样式 0 修改，组件 API 也尽量保持了一致。Ant Design Vue 致力于提供给程序员愉悦的开发体验。`
+          id: 2, date: '2021-02-01', title: '月烟染,韶华纯然一笑凝芷兰', eye: 99, heart: 45, comment: 78, pic: require('@/assets/img/7.jpg'),
+          description: `月烟染,韶华纯然一笑凝芷兰.自秦时明月    --高月。`
+        },
+        {
+          id: 3, date: '2021-01-30', title: '帝王业 谋局制权走马已惘然', eye: 49, heart: 55, comment: 8, pic: require('@/assets/img/16.jpg'),
+          description: `帝王业 谋局制权走马已惘然, 秦时明月 -- 李斯`
+        },
+        {
+          id: 4, date: '2020-11-01', title: '未央颂 九州八荒定国功成战', eye: 10, heart: 0, comment: 3, pic: require('@/assets/img/6.jpg'),
+          description: `未央颂 九州八荒定国功成战。秦时明月 -- 嬴政`
         },
       ]
     }
@@ -329,6 +333,10 @@ export default {
           }
         }
       }
+    }
+    // 底线
+    .bottom-line {
+      text-align: center;
     }
   }
 }
