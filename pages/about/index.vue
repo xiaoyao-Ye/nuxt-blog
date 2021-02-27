@@ -50,7 +50,7 @@ export default {
     }
   },
   components: {
-    Header: () => import('@/components/Header')
+    Header: () => import('@/components/Header/index')
   }
 }
 </script>

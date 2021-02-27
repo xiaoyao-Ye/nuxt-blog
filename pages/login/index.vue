@@ -1,61 +1,71 @@
 <template>
-  <div>
-    <a-button type="dashed" @click="$router.push('/')">登录页面开发中...(*^▽^*)去看看别的页面吧!</a-button>
-    <div class="loading">
-      <i></i>
-      <i></i>
-      <i></i>
-      <i></i>
-      <i></i>
-    </div>
+  <div class="login">
+    <!-- <a-button type="dashed" @click="$router.push('/')">登录页面开发中...(*^▽^*)去看看别的页面吧!</a-button> -->
+    <a-form id="components-form-demo-normal-login" :form="form" class="login-form" @submit="handleSubmit">
+      <a-form-item>
+        <a-input v-decorator="userName" placeholder="Username">
+          <a-icon slot="prefix" type="user" style="color: rgba(0,0,0,.25)" />
+        </a-input>
+      </a-form-item>
+      <a-form-item>
+        <a-input v-decorator="password" type="password" placeholder="Password">
+          <a-icon slot="prefix" type="lock" style="color: rgba(0,0,0,.25)" />
+        </a-input>
+      </a-form-item>
+      <a-form-item>
+        <a-checkbox v-decorator="remember">Remember me</a-checkbox>
+        <a class="login-form-forgot" href>忘记密码?</a>
+        <a-button type="primary" html-type="submit" class="login-form-button">Log in</a-button>Or
+        <a href>立即注册!</a>
+      </a-form-item>
+    </a-form>
   </div>
 </template>
 
 <script>
-export default {
+const userName = ['userName', { rules: [{ required: true, message: 'Please input your username!' }] },]
+const password = ['password', { rules: [{ required: true, message: 'Please input your Password!' }] },]
+const remember = ['remember', { valuePropName: 'checked', initialValue: true, },]
 
+export default {
+  data() {
+    return {
+      form: this.$form.createForm(this, { name: 'normal_login' })
+    }
+  },
+  computed: {
+    userName() { return userName },
+    password() { return password },
+    remember() { return remember },
+  },
+  methods: {
+    handleSubmit(e) {
+      e.preventDefault();
+      this.form.validateFields((err, values) => {
+        if (!err) {
+          console.log('Received values of form: ', values);
+        }
+      });
+    },
+  },
 }
 </script>
 
 <style lang="less" scoped>
-@keyframes loading {
-  0%,
-  100% {
-    opacity: 0.98;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.3;
-    transform: scale(2.2);
-  }
+.login {
+  min-height: 100vh;
+  // height: 935px;
+  background: url("../../assets/img/mofang.jpg") center;
+  background-size: 110% 110%;
+  background-position-x: 200%;
 }
-.loading {
-  display: flex;
-  margin-left: 10px;
-  i {
-    margin-right: 8px;
-    width: 13px;
-    height: 13px;
-    border-radius: 50%;
-    animation: loading 1.4s ease infinite;
-    opacity: 0.98;
-    background: rgb(60, 174, 207);
-    &:nth-of-type(2) {
-      animation-delay: 0.12s;
-      background: rgb(76, 183, 212);
-    }
-    &:nth-of-type(3) {
-      animation-delay: 0.24s;
-      background: rgb(104, 193, 218);
-    }
-    &:nth-of-type(4) {
-      animation-delay: 0.36s;
-      background: rgb(125, 209, 233);
-    }
-    &:nth-of-type(5) {
-      animation-delay: 0.48s;
-      background: rgb(162, 227, 245);
-    }
-  }
+#components-form-demo-normal-login {
+  max-width: 300px;
+}
+#components-form-demo-normal-login .login-form-forgot {
+  float: right;
+}
+#components-form-demo-normal-login .login-form-button {
+  width: 100%;
 }
 </style>

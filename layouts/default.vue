@@ -16,7 +16,7 @@ export default {
     }
   },
   components: {
-    Totop: () => import('@/components/Totop')
+    Totop: () => import('@/components/Totop/index')
   },
   mounted() {
     setTimeout(() => {
