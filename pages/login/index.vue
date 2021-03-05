@@ -54,10 +54,16 @@ export default {
 <style lang="less" scoped>
 .login {
   min-height: 100vh;
-  // height: 935px;
+  height: 935px;
   background: url("../../assets/img/mofang.jpg") center;
   background-size: 110% 110%;
   background-position-x: 200%;
+}
+#components-form-demo-normal-login {
+  position: fixed;
+  top: 50%;
+  right: 10%;
+  transform: translateY(-50%);
 }
 #components-form-demo-normal-login {
   max-width: 300px;
