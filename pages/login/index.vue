@@ -41,9 +41,17 @@ export default {
   methods: {
     handleSubmit(e) {
       e.preventDefault();
-      this.form.validateFields((err, values) => {
+      this.form.validateFields(async (err, values) => {
         if (!err) {
           console.log('Received values of form: ', values);
+          const res = await this.$axios.post('/auth/login', {
+            account: values.userName,
+            password: values.password
+          })
+          console.log('res', res);
+          if (res.data.code == 200) {
+            this.$router.push('/')
+          }
         }
       });
     },
@@ -73,5 +81,11 @@ export default {
 }
 #components-form-demo-normal-login .login-form-button {
   width: 100%;
+}
+/deep/#components-form-demo-normal-login {
+  .ant-form-explain,
+  span {
+    color: #fff;
+  }
 }
 </style>

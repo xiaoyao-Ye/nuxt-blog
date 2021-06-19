@@ -31,6 +31,9 @@ export default {
   },
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
+  // 这里的引入,如果是普通字符串,就在服务端马上运行
+  // 如果是要等到浏览器在运行的代码,可以将配置改为对象,并且路径作为...
+  // 如果只在浏览器加载的代码,可以添加一个属性ssr: false
   plugins: [
     '@/plugins/antd-ui',
     { src: '@/plugins/route', ssr: false },
@@ -51,7 +54,20 @@ export default {
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {},
+  axios: {
+    prefix: '/api',
+    proxy: true
+  },
+
+  proxy: {
+    '/api': {
+      // target: 'http://yeyaoyao.icu',
+      target: 'http://localhost:1024',
+      pathRewrite: {
+        '^/api/': '/'
+      }
+    }
+  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
@@ -59,6 +75,10 @@ export default {
       config.module.rules.push({
         test: /\.cur$/,
         loader: "url-loader",
+      })
+      config.module.rules.push({
+        test: /\.md$/,
+        loader: "./markdown-loader"
       })
     }
   }

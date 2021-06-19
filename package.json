@@ -18,7 +18,9 @@
     },
     "devDependencies": {
         "@nuxtjs/style-resources": "^1.0.0",
+        "highlight.js": "^10.7.2",
         "less": "^4.1.1",
-        "less-loader": "^5.0.0"
+        "less-loader": "^5.0.0",
+        "marked": "^2.0.5"
     }
 }
