@@ -63,7 +63,7 @@ export default {
         { to: '/article', label: '文章', icon: 'read' },
         { to: '/dailyTask', label: '每日任务', icon: 'schedule' },
         { to: '/login', label: '登录', icon: 'login' },
-        { to: '/about', label: '关于', icon: 'info-circle' },
+        // { to: '/about', label: '关于', icon: 'info-circle' },
         { to: '/message', label: '留言', icon: 'message' },
       ],
       aboutList: [

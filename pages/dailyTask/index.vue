@@ -30,7 +30,6 @@ export default {
 </script>
 
 <style lang="less" scoped>
-
 .warp {
   padding-top: 50px;
   height: 100vh;
