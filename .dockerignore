@@ -1,0 +1,15 @@
+.git
+assets/
+components/
+layouts/
+middleware/
+node_modules/
+pages/
+plugins/
+store/
+.editorconfig
+.gitignore
+ecosystem.config.js
+jsconfig.json
+markdown-loader.js
+README.md

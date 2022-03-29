@@ -1,8 +1,7 @@
 FROM node:14-buster-slim
-EXPOSE 3000
 WORKDIR /app
 # COPY package.json .
-# RUN yarn
-
 COPY . .
+RUN yarn
+
 CMD ["yarn", "start"]

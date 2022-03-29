@@ -1,5 +1,9 @@
 const path = require('path')
 
+function resolve(dir) {
+  return path.join(__dirname, dir)
+}
+
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -36,6 +40,7 @@ export default {
   // 如果只在浏览器加载的代码,可以添加一个属性ssr: false
   plugins: [
     '@/plugins/antd-ui',
+    '@/icons/index.js',
     { src: '@/plugins/route', ssr: false },
   ],
 
@@ -80,6 +85,23 @@ export default {
         test: /\.md$/,
         loader: "./markdown-loader"
       })
+
+      config.module.rules.push({
+        test: /\.(svg)$/i,
+        loader: "svg-sprite-loader",
+        include: [resolve('icons')],
+        options: {
+          symbolId: 'icon-[name]'
+        }
+      })
+      config.module.rules.push({
+        test: /\.(png|jpe?g|gif|svg|webp|avif)$/i,
+        loader: 'url-loader',
+        exclude: [resolve('icons')],
+      })
+
+      config.module.rules.splice(9, 1);
+
     }
   }
 }

@@ -1,6 +1,9 @@
 <template>
   <div class="header">
     <div class="left" @click="$router.push('/')">妖</div>
+    <svg-icon icon-class="password" class-name="disabled" />
+    <svg-icon icon-class="bug" />
+    <svg-icon icon-class="shopping" class-name="card-panel-icon" />
     <div class="center" :style="{opacity: opacity}">{{tip}}</div>
     <div class="right" @click="$router.push('/about')">
       <img src="@/assets/img/12.jpg" alt />

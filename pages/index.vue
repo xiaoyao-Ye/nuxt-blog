@@ -51,6 +51,8 @@
           >{{item.label}}</a-button>
         </div>
       </div>
+      <!-- copyright -->
+      <p>湘ICP备2021012246号</p>
     </div>
   </div>
 </template>
@@ -65,6 +67,7 @@ export default {
         { to: '/login', label: '登录', icon: 'login' },
         // { to: '/about', label: '关于', icon: 'info-circle' },
         { to: '/message', label: '留言', icon: 'message' },
+        { to: '/navigation', label: '导航', icon: 'compass' },
       ],
       aboutList: [
         { to: '//github.com/17752877748', label: 'github', icon: 'github' },

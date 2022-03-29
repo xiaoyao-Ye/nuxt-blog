@@ -1,8 +1,11 @@
 <template>
   <div class="page">
-    <div class="template"></div>
-    <div class="compass"></div>
+    <svg-icon icon-class="template" class-name="template" />
+    <svg-icon icon-class="compass" class-name="compass" />
     <div class="fade"></div>
+    <!-- <div class="template"></div>
+    <div class="compass"></div>
+    <div class="fade"></div>-->
   </div>
 </template>
 
@@ -27,6 +30,7 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
+  color: transparent;
 }
 @keyframes rotate {
   from {
@@ -39,13 +43,13 @@ export default {
 .compass {
   opacity: 0.3;
   height: 1750px;
-  background: url("@/static/compass.svg") no-repeat center;
+  background: url("@/icons/svg/compass.svg") no-repeat center;
   animation: rotate 360s infinite linear;
 }
 .template {
   opacity: 0.1;
   height: 950px;
-  background: url("@/static/template.svg") no-repeat center;
+  background: url("@/icons/svg/template.svg") no-repeat center;
   background-size: 200% 200%;
 }
 .fade {

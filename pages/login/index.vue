@@ -63,7 +63,7 @@ export default {
 .login {
   min-height: 100vh;
   height: 935px;
-  background: url("../../assets/img/mofang.jpg") center;
+  background: url("../../assets/img/_Ghosteye.jpg") center;
   background-size: 110% 110%;
   background-position-x: 200%;
 }
